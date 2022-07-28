@@ -1,0 +1,10 @@
+server:
+  port: 8083
+
+logging:
+  level:
+    root: ${LOGGING_LEVEL:WARN}
+    com.bhaskar.JWTDemo.JwtDemoApplication: DEBUG
+
+jwt:
+  secret: secretkey123
