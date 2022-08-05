@@ -1,0 +1,82 @@
+# API Documentation with Swagger
+
+You can imlement API Documentation in 4 easy steps
+
+
+## Step 1
+
+Add the below dependency in your Spring boot project in POM.xml file
+
+```http
+<dependency>
+    <groupId>io.springfox</groupId>
+    <artifactId>springfox-boot-starter</artifactId>
+    <version>3.0.0</version>
+</dependency>
+<dependency>
+    <groupId>io.springfox</groupId>
+    <artifactId>springfox-swagger-ui</artifactId>
+    <version>3.0.0</version>
+</dependency>
+```
+
+## Step 2
+
+Add EnableSwagger2 annotation in your SPring Boot main Java File
+
+```http
+@SpringBootApplication
+@EnableSwagger2
+public class SpringBootDemoApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(SpringBootDemoApplication.class, args);
+    }
+
+}
+```
+
+## Step 3
+
+Create a Springfox Configuration Class
+
+```http
+@Configuration
+public class SpringFoxConfig {
+
+    @Bean
+    public Docket api() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .select()
+                .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.any())
+                .build();
+    }
+}
+```
+
+## Step 4
+
+Add the Configuration in application.properties for Springfox
+
+```http
+spring.mvc.pathmatch.matching-strategy = ANT_PATH_MATCHER
+```
+
+or
+Add the Configuration in application.YML for Springfox
+
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+
+## Run Locally
+
+Start the Spring boot application and go to below URL fro your API Documentation
+
+```bash
+  http://localhost:8080/swagger-ui/
+```
+

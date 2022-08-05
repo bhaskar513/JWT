@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
+
 @RestController
 public class HomeController {
 
@@ -29,12 +31,14 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(){
+        System.out.println("inside get details");
         return "welcome security Bhaskar";
     }
 
     @PostMapping("/authenticate")
     public JWTResponse authenticate(@RequestBody JWTRequest jwtRequest) throws Exception{
         try {
+            System.out.println("inside authentication");
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(jwtRequest.getUsername(),
                             jwtRequest.getPassword()
